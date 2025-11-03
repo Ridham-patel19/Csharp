@@ -9,11 +9,13 @@ namespace inheritance
 
             Animal animal = new Animal();
             Console.WriteLine("Hello, World!");
+            Console.WriteLine("\n \n");
             Dog dog = new Dog();
             Console.WriteLine("single inheritance");
             dog.eat();
             dog.Bark();
 
+            Console.WriteLine("\n \n");
             Console.WriteLine("multiLevel inheritance");
             Tomy mydog = new Tomy();
 
@@ -21,6 +23,7 @@ namespace inheritance
             mydog.Bark();
             mydog.mytomy();
 
+            Console.WriteLine("\n \n");
             Console.WriteLine("hearchy inheritance");
 
             Cat cat = new Cat();
@@ -37,6 +40,7 @@ namespace inheritance
              At runtime, which method gets called depends on the declared type of the variable,
              not the actual object type.*/
 
+            Console.WriteLine("\n \n");
             animal.makesound();
             dog.makesound();
             cat.makesound();
@@ -66,6 +70,12 @@ namespace inheritance
 
     class Animal 
     {
+
+
+        public Animal()
+        {
+            Console.WriteLine("this is base class constructer");
+        }
         public virtual void  eat() { Console.WriteLine("Eating..."); }
         public void makesound() { Console.WriteLine("makinng sound..."); }
 
@@ -77,10 +87,26 @@ namespace inheritance
     //thid is a single inheritance
     class Dog: Animal
     {
-        public void Bark() { Console.WriteLine("barking..."); }
-        public void makesound() { Console.WriteLine("barking..."); }
+        
+        //here we are using base cllass constructer with derived class constructer
+        public Dog() : base()
+        {
+            Console.WriteLine("this dog derived class constructer");
+        }
 
-        public override void  eat() { Console.WriteLine("eating  dog food"); }
+        public void Bark() {
+            
+            base.eat();
+            Console.WriteLine("barking..."); }
+        public void makesound() {
+           
+            Console.WriteLine("barking..."); }
+
+        public override void  eat() {
+            //this is base key word with which we cn use base class properties and member method etc 
+            //but we can only use it inside method and with constructer
+            base.eat();
+            Console.WriteLine("eating  dog food"); }
 
     }
 
@@ -105,3 +131,51 @@ namespace inheritance
 
     }
 }
+
+
+//evrything for abstract class
+
+//An abstract class is a class that cannot be instantiated directly. Instead,
+//it serves as a blueprint for other classes. It is meant to be inherited by
+//other classes that provide specific implementations for its abstract methods.
+
+//An abstract method is a method that is declared but not defined in the
+//abstract class. It must be overridden in a derived class.
+
+//This allows developers to enforce a structure and behavior across multiple
+//related classes while allowing for flexibility in implementation.
+
+
+// Abstract class - cannot be instantiated
+//abstract class Animal
+//{
+//    // Abstract method - must be implemented in derived classes
+//    public abstract void MakeSound();
+
+//    // Non-abstract method - can have a default implementation
+//    public void Sleep()
+//    {
+//        Console.WriteLine("Sleeping...");
+//    }
+//}
+
+//// Concrete class that inherits from Animal
+//class Dog : Animal
+//{
+//    // Providing implementation for abstract method
+//    public override void MakeSound()
+//    {
+//        Console.WriteLine("Woof! Woof!");
+//    }
+//}
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        // Animal animal = new Animal(); // ERROR: Cannot instantiate abstract class
+//        Dog myDog = new Dog();
+//        myDog.MakeSound(); // Output: Woof! Woof!
+//        myDog.Sleep(); // Output: Sleeping...
+//    }
+//}
