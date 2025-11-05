@@ -63,6 +63,11 @@ namespace inheritance
             //This means you cannot seal a method directly in the base class; it must first be an overridden method. with override key word first we have use sealed key word 
 
 
+            Console.WriteLine("\n \n polymorphism \n");
+            //part 2 of polymorphism
+            Animal myanimal = new Dog();
+            myanimal.eat();
+
 
 
         }
@@ -105,7 +110,7 @@ namespace inheritance
         public override void  eat() {
             //this is base key word with which we cn use base class properties and member method etc 
             //but we can only use it inside method and with constructer
-            base.eat();
+            //base.eat();
             Console.WriteLine("eating  dog food"); }
 
     }

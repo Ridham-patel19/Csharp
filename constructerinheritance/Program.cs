@@ -8,7 +8,7 @@
             john.Displayinfo();
             john.displayinfoemployee();
 
-            Console.WriteLine(" \n multilevel inheritance constructer inheritance");
+            Console.WriteLine(" \n multilevel inheritance constructer inheritance \n");
 
             Manager team = new Manager("ridhu" , 21 , 2 , "Manager" , 2);
             team.Displaymanagerinfo();
