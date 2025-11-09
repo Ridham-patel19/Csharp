@@ -18,7 +18,9 @@
             //calling / invocation
             notify("hello this is my delagate");
 
+            var sqrt = (int s) => s * s;
 
+            Console.WriteLine(sqrt(3));
         }
 
         static void messages(string msg) 
