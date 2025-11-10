@@ -27,7 +27,7 @@ namespace banking_system
             {
                 Directory.CreateDirectory(Mainpath);
             }
-            saveinfo();
+            File.AppendAllText(Path.Combine(Mainpath, Name.Replace(" ", "") + ".Txt"), $"User Name : {Name} \n Account type : {Accounttype} \n ");
 
 
 
@@ -45,7 +45,7 @@ namespace banking_system
             Balance = Balance - money;
             File.AppendAllText(Path.Combine(Mainpath, "Passbook.txt"), "Withrawled money : " + Money + "\n");
             File.WriteAllText(Path.Combine(Mainpath, "Currentbalance.txt"), Balance.ToString());
-            saveinfo();
+          
         }
 
         public void Credited(int money)
@@ -54,21 +54,23 @@ namespace banking_system
             Balance = Balance + money;
             File.AppendAllText(Path.Combine(Mainpath, "Passbook.txt"), "Credited money : " + Money + "\n");
             File.WriteAllText(Path.Combine(Mainpath, "Currentbalance.txt"), Balance.ToString());
-            saveinfo() ;
+            
 
 
         }
 
-
-
-
-        private void saveinfo()
+        public void Displaypassbook() 
         {
-           
-            File.AppendAllText(Path.Combine(Mainpath, Name.Replace(" ", "") + ".Txt"), $"User Name : {Name} \n Account type : {Accounttype} \n Balnce : {Balance} \n");
+            string passbookdetail = File.ReadAllText(Path.Combine(Mainpath, "passbook.txt"));
 
-            //if(Directory.Exists())
+            Console.WriteLine($"your passbook details are : \n {passbookdetail}");
+
         }
+
+
+
+
+       
     }
 
    
@@ -80,19 +82,51 @@ namespace banking_system
             //int a = Random(2 ,10);
 
             UserInfo user1 = new UserInfo();
-            user1.initializinginfo("Ridham Patel", "saving account");
-            user1.Credited(10000);
-            user1.Withrawl(200);
+            //user1.initializinginfo("Ridham Patel", "saving account");
+            //user1.Credited(1000);
+            //user1.Withrawl(1000);
 
-            user1.Credited(1000);
-            Console.WriteLine(user1.Balance);
-            
-            
+            //user1.Credited(1000);
+            //user1.Credited(1000);
+            //user1.Withrawl(1000);
+            //user1.Displaypassbook();
+            int n = 0;
+
+            while(n != 4) 
+            {
+                Console.WriteLine($"to create an account click 1 \n to credit 2 \n to withrawl click 3 \n amd to exit 4 \n");
+                 n =int.Parse(Console.ReadLine());
+
+                switch(n) 
+                {
+                    case 1:
+
+                        user1.initializinginfo("new one", "current");
+
+                        break;
+
+                        case 2:
+
+                        user1.Credited(1000);
+
+                        break;
+                        case 3:
+
+                        user1.Withrawl(100);
+
+                        break;
+                        case 4:
+                           n = 4;
+                        break;
+                }
+            }
+
+
 
             //UserInfo user2 = new UserInfo();
             //user2.initializinginfo("dev patel", "current account");
 
-            
+
         }
     }
 }
